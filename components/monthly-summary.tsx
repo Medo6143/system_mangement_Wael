@@ -169,19 +169,19 @@ export function MonthlySummary({ records, onArchiveComplete }: { records: Record
   };
 
   return (
-    <Card className="border-none shadow-lg bg-gradient-to-br from-white via-white to-blue-50">
-      <CardHeader>
-        <div className="flex justify-between items-start">
-          <div>
-            <CardTitle className="text-2xl">الملخص الشهري</CardTitle>
-            <CardDescription className="text-base mt-1">{format(currentDate, 'MMMM yyyy', { locale: ar })}</CardDescription>
+    <Card className="border-none shadow-lg bg-gradient-to-br from-white via-white to-blue-50 w-full overflow-hidden">
+      <CardHeader className="pb-4 sm:pb-6">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-4">
+          <div className="min-w-0 flex-1">
+            <CardTitle className="text-xl sm:text-2xl">الملخص الشهري</CardTitle>
+            <CardDescription className="text-sm sm:text-base mt-1">{format(currentDate, 'MMMM yyyy', { locale: ar })}</CardDescription>
           </div>
           {monthlyRecords.length > 0 && (
             <AlertDialog>
               <AlertDialogTrigger asChild>
                 <button
                   disabled={archiving}
-                  className="bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white font-medium py-2 px-4 rounded-md disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
+                  className="bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white font-medium py-2 px-4 rounded-md disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 text-sm sm:text-base w-full sm:w-auto"
                 >
                   {archiving ? (
                     <>
@@ -196,7 +196,7 @@ export function MonthlySummary({ records, onArchiveComplete }: { records: Record
                   )}
                 </button>
               </AlertDialogTrigger>
-              <AlertDialogContent className="sm:max-w-md">
+              <AlertDialogContent className="sm:max-w-md mx-4">
                 <AlertDialogHeader>
                   <AlertDialogTitle>تأكيد الأرشفة</AlertDialogTitle>
                   <AlertDialogDescription className="space-y-2">
@@ -219,36 +219,42 @@ export function MonthlySummary({ records, onArchiveComplete }: { records: Record
           )}
         </div>
       </CardHeader>
-      <CardContent className="space-y-6">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <div className="space-y-2 p-6 bg-gradient-to-br from-slate-50 to-slate-100 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
-            <p className="text-sm font-medium text-slate-600">إجمالي الطلاب</p>
-            <p className="text-3xl font-bold text-slate-900">{monthlyStats.totalStudents}</p>
+      <CardContent className="space-y-4 sm:space-y-6 px-4 sm:px-6">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+          <div className="space-y-2 p-4 sm:p-6 bg-gradient-to-br from-slate-50 to-slate-100 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+            <p className="text-xs sm:text-sm font-medium text-slate-600">إجمالي الطلاب</p>
+            <p className="text-2xl sm:text-3xl font-bold text-slate-900">{monthlyStats.totalStudents}</p>
           </div>
-          <div className="space-y-2 p-6 bg-gradient-to-br from-green-50 to-emerald-100 rounded-xl border border-green-200 shadow-sm hover:shadow-md transition-shadow">
-            <p className="text-sm font-medium text-green-700">ربحك</p>
-            <p className="text-3xl font-bold text-green-900">{monthlyStats.totalTeacherProfit.toFixed(2)} ج.م</p>
+          <div className="space-y-2 p-4 sm:p-6 bg-gradient-to-br from-green-50 to-emerald-100 rounded-xl border border-green-200 shadow-sm hover:shadow-md transition-shadow">
+            <p className="text-xs sm:text-sm font-medium text-green-700">ربحك</p>
+            <p className="text-2xl sm:text-3xl font-bold text-green-900">{monthlyStats.totalTeacherProfit.toFixed(2)} ج.م</p>
           </div>
-          <div className="space-y-2 p-6 bg-gradient-to-br from-blue-50 to-cyan-100 rounded-xl border border-blue-200 shadow-sm hover:shadow-md transition-shadow">
-            <p className="text-sm font-medium text-blue-700">ربح المدرسة</p>
-            <p className="text-3xl font-bold text-blue-900">{monthlyStats.totalSchoolProfit.toFixed(2)} ج.م</p>
+          <div className="space-y-2 p-4 sm:p-6 bg-gradient-to-br from-blue-50 to-cyan-100 rounded-xl border border-blue-200 shadow-sm hover:shadow-md transition-shadow">
+            <p className="text-xs sm:text-sm font-medium text-blue-700">ربح المدرسة</p>
+            <p className="text-2xl sm:text-3xl font-bold text-blue-900">{monthlyStats.totalSchoolProfit.toFixed(2)} ج.م</p>
           </div>
-          <div className="space-y-2 p-6 bg-gradient-to-br from-amber-50 to-orange-100 rounded-xl border border-amber-200 shadow-sm hover:shadow-md transition-shadow">
-            <p className="text-sm font-medium text-amber-700">إجمالي الدخل</p>
-            <p className="text-3xl font-bold text-amber-900">{monthlyStats.totalIncome.toFixed(2)} ج.م</p>
+          <div className="space-y-2 p-4 sm:p-6 bg-gradient-to-br from-amber-50 to-orange-100 rounded-xl border border-amber-200 shadow-sm hover:shadow-md transition-shadow">
+            <p className="text-xs sm:text-sm font-medium text-amber-700">إجمالي الدخل</p>
+            <p className="text-2xl sm:text-3xl font-bold text-amber-900">{monthlyStats.totalIncome.toFixed(2)} ج.م</p>
           </div>
         </div>
 
         {chartData.length > 0 && (
-          <div className="w-full h-80">
+          <div className="w-full h-64 sm:h-80">
             <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={chartData}>
+              <BarChart data={chartData} margin={{ top: 20, right: 10, left: 10, bottom: 5 }}>
                 <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="date" />
-                <YAxis />
+                <XAxis dataKey="date" tick={{ fontSize: 12 }} />
+                <YAxis tick={{ fontSize: 12 }} />
                 <Tooltip
-                  formatter={(value: number) => `$${value.toFixed(2)}`}
+                  formatter={(value: number) => [`${value.toFixed(2)} ج.م`, '']}
                   labelStyle={{ color: '#334155' }}
+                  contentStyle={{
+                    backgroundColor: 'white',
+                    border: '1px solid #e2e8f0',
+                    borderRadius: '8px',
+                    fontSize: '14px'
+                  }}
                 />
                 <Legend />
                 <Bar dataKey="teacherProfit" fill="#10b981" name="ربح المعلم" />

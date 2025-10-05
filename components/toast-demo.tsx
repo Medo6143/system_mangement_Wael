@@ -7,8 +7,8 @@ export function ToastDemo() {
   const { success, error, warning, info } = useToast();
 
   return (
-    <div className="p-6 bg-white rounded-lg shadow-lg max-w-md mx-auto">
-      <h3 className="text-lg font-semibold mb-4 text-center">تجربة الإشعارات</h3>
+    <div className="p-6  bg-white rounded-lg shadow-lg max-w-md mx-auto">
+      <h3 className="text-lg text-red-200 font-semibold mb-4 text-center"> الإشعارات</h3>
       <div className="space-y-3">
         <Button
           onClick={() => success({
